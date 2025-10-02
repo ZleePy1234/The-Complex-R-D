@@ -9,9 +9,13 @@ public class SingleShotMode : IFireMode
 {
     public void Fire(Transform firePoint, WeaponData data)
     {
+        if (firePoint == null) Debug.LogError("firePoint is null in Fire!");
+        if (data == null) Debug.LogError("weaponData is null in Fire!");
+        if (data.projectilePrefab == null) Debug.LogError("projectilePrefab is null!");
         GameObject projectile = Object.Instantiate(data.projectilePrefab, firePoint.position, firePoint.rotation);
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
-        rb.linearVelocity = firePoint.forward * data.projectileSpeed;
+        if (rb == null) Debug.LogError("Rigidbody is null on projectile!");
+        else rb.linearVelocity = firePoint.forward * data.projectileSpeed;
         Object.Destroy(projectile, data.projectileLifetime);
     }
 }

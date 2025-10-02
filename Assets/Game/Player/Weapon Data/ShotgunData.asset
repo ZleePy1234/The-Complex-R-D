@@ -9,16 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a2dbcb85bb709b43bf057bfa4b69eaf, type: 3}
+  m_Script: {fileID: 11500000, guid: 32888de5edc05b1439f0a094ec69ee87, type: 3}
   m_Name: ShotgunData
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
-  weaponName: SG-09
+  weaponName: 
   damage: 0
-  fireRate: 0
-  magSize: 0
+  fireRate: 1
+  magSize: 20
   reloadTime: 0
-  projectilePrefab: {fileID: 0}
-  projectileLifetime: 0
-  projectileSpeed: 0
-  projectilesPerShot: 0
-  projectileSpread: 0
+  projectilePrefab: {fileID: 1165290393940566851, guid: b14c4b571e271dc4a9137a071c94ec79, type: 3}
+  projectileLifetime: 1
+  projectileSpeed: 15
+  projectilesPerShot: 6
+  projectileSpread: 25

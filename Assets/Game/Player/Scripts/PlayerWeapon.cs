@@ -1,26 +1,44 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(PlayerInput))]
 public class PlayerWeapon : MonoBehaviour
 {
     public WeaponData weaponData;
     public Transform firePoint;
 
     private IFireMode fireMode;
-    private float nextTimeToFire;
+    public float nextTimeToFire;
+
+    private PlayerInput playerInput;
+    private PlayerControls playerControls;
+    InputAction fireAction;
 
     void Awake()
     {
         firePoint = GameObject.Find("FirePoint").transform;
+        playerControls = new PlayerControls();
+        playerInput = GetComponent<PlayerInput>();
+        fireAction = playerControls.Controls.Fire; // <-- Correct way if using default Input System codegen
+    }
+    private void OnEnable()
+    {
+        playerControls.Enable();
+    }
+    private void OnDisable()
+    {
+        playerControls.Disable();
     }
     void Start()
     {
-        SetFireMode(new SingleShotMode());
+        SetFireMode(new ShotgunSpreadMode());
     }
 
     void Update()
     {
-        if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
+        if (fireAction.IsPressed() && Time.time >= nextTimeToFire)
         {
+
             Fire();
         }
     }
